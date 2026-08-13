@@ -27,4 +27,4 @@ class Employee(models.Model):
     #nisam siguran PROTECT ili DELETE, da li kad odeljenje se obrise to znaci i da su zaposleni otpusteni
 
     def __str__(self):
-        return f"{self.name} {self.last_name}"
+        return f"{self.first_name} {self.last_name}"
