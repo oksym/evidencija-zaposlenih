@@ -2,9 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Evidencija zaposlenih</title>
 </head>
 <body>
+<div>
+<p1>ukupan broj zaposlenih</p1>
+<p1>broj aktivnih zaposlenih</p1>
+<p1>broj neaktivnih zaposlenih</p1>
+<p1>broj odeljenja</p1>
+    </div>
 
+{#<a href="/employee_list/">Lista zaposlenih</a>#}
+<a href="{% url 'emp_list' %}">Lista zaposlenih</a>
+<a href="{% url 'dep_list' %}">Lista odeljenja</a>
 </body>
 </html>

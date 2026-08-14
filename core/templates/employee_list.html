@@ -1,0 +1,6 @@
+
+
+<h1>List of employees</h1>
+{% for employee in employees %}
+    <a href="{% url 'emp_detail' employee.id %}">{{ employee }}</a>
+{% endfor %}
