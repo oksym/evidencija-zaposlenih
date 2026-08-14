@@ -6,3 +6,6 @@
 {{ employee.employment_date }}
 {{ employee.employment_status }}
 {{ employee.department }}
+
+<a href="{% url 'edit_emp' employee.id %}">Izmeni podatke zaposlenog</a>
+<a href="{% url 'delete_emp' employee.id %}">Obrisi profil</a>

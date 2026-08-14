@@ -1,0 +1,13 @@
+
+<p>Da li zelite da obrisete ovaj profil {{ employee }} ?</p>
+<form method="POST">
+    {% csrf_token %}
+    <button>Potvrdi</button>
+</form>
+
+<form method="POST" action="{% url 'emp_detail' employee.id %}">
+    {% csrf_token %}
+    <button>Otkazi</button>
+</form>
+
+

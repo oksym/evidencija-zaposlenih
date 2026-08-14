@@ -5,8 +5,8 @@ class Department(models.Model):
 
     def __str__(self):
         return self.name
-class Employee(models.Model):
 
+class Employee(models.Model):
     EMPLOYEE_TYPE=[
         ('full-time','Full-time'),('part-time', 'Part-time'),('intern','Intern')
     ]
@@ -17,7 +17,7 @@ class Employee(models.Model):
 
     first_name = models.CharField(max_length=20)
     last_name = models.CharField(max_length=30)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     mobile_phone=models.CharField(max_length=20)
     employee_type=models.CharField(max_length=30,choices=EMPLOYEE_TYPE) #posto vec postoje  odeljenja ja sam umesto titula kojih bi bilo mnogo ovde stavio drugi podatak
     employment_date=models.DateField()

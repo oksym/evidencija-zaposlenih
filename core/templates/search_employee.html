@@ -1,0 +1,10 @@
+<h1>Search results for {{ query }}</h1>
+
+{% if employees %}
+    {% for employee in employees %}
+        {{ employee.first_name }} {{ employee.last_name }}
+        <a href="{% url 'emp_detail' employee.id %}">View employee details</a>
+    {% endfor %}
+{% else %}
+    <p>Results not found</p>
+{% endif %}

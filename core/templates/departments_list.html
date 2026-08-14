@@ -1,6 +1,5 @@
 
 <h1>Departments list:</h1>
-
 {% for department in departments %}
     <a href="{% url 'dep_detail' department.id %}">{{ department }}</a>
 {% endfor %}
