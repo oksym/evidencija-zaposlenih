@@ -28,3 +28,13 @@ class Employee(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+class AttendanceLog(models.Model):
+    employee = models.ForeignKey(Employee, on_delete=models.PROTECT,related_name='attendances')
+    date = models.DateField()
+    clock_in = models.TimeField()
+    clock_out = models.TimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.employee}-{self.date}"
+

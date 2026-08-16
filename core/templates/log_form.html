@@ -1,0 +1,17 @@
+
+<form method="POST">
+{% csrf_token %}
+ <label >Choose Employee</label>
+    <select name="empl">
+        {% for employee in employees  %}
+        <option value="{{ employee.id }}">{{ employee.first_name }} {{ employee.last_name }}
+        </option>
+        {% endfor %}
+    </select>
+
+<input name="date" type="date" placeholder="Date">
+<input name="clock_in" type="time" placeholder="Clock in">
+<input name="clock_out" type="time" placeholder="Clock out">
+    <button> Save </button>
+
+    </form>

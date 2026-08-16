@@ -1,14 +1,33 @@
-from multiprocessing import context
-
-from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
-from core.models import Employee, Department
+from core.models import Employee, Department, AttendanceLog
 from core.forms import EmployeeForm
+from django.db.models import Q
 from django.views.generic.edit import CreateView
 
+# =========================
+# HOME
+# =========================
 def home(request):
-    return render(request, 'home.html')
+    employees=Employee.objects.all()
+    departments= Department.objects.all()
+    total_emp=len(employees)
+    total_dep=len(departments)
+    active=[]
+    inactive=[]
+    for employee in employees:
+        status=employee.employment_status
+        if status=='active':
+            active.append(status)
+        else:
+            inactive.append(status)
+    total_active=len(active)
+    total_inactive = len(inactive)
+    return render(request, 'home.html',context={'total_emp':total_emp,'total_dep':total_dep,'total_active':total_active,'total_inactive':total_inactive } )
 
+
+# =========================
+# EMPLOYEES
+# =========================
 def employee_list(request):
     employees= Employee.objects.all()
     return render(request, 'employee_list.html', context={'employees':employees})
@@ -17,15 +36,6 @@ def employee_detail(request,id):
     # employee=Employee.objects.get(id=id)
     employee = get_object_or_404(Employee,id=id)
     return render(request, 'employee_detail.html',context={'employee':employee} )
-
-def departments_list(request):
-    departments=Department.objects.all()
-    return render(request,'departments_list.html', context={'departments':departments})
-
-def departments_detail(request,id):
-    department = Department.objects.get(id=id)
-    employees=department.employees.all()
-    return render(request,'departments_detail.html',context={'employees':employees})
 
 
 def add_employee(request):
@@ -63,6 +73,54 @@ def search_employee(request):
     else:
         employees=Employee.objects.all()
     return render(request, 'search_employee.html',context={'query':query,'employees':employees})
+
+
+# =========================
+# DEPARTMENTS
+# =========================
+def departments_list(request):
+    departments=Department.objects.all()
+    return render(request,'departments_list.html', context={'departments':departments})
+
+def departments_detail(request,id):
+    department = get_object_or_404(Department,id=id)
+    employees=department.employees.all()
+    return render(request,'departments_detail.html',context={'employees':employees})
+
+
+# =========================
+# ATTENDANCE
+# =========================
+
+# def logs(request):
+#     if request.method=="POST":
+#         form = AttendanceLogForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('home')
+#     else:
+#         form= AttendanceLogForm()
+#     return render(request, 'employee_form.html',context={'form':form})
+
+def logs(request):
+    employees=Employee.objects.all()
+    if request.method=="POST":
+        employee_id= request.POST["empl"]
+        employee = Employee.objects.get(id=employee_id)
+        date=request.POST["date"]
+        clock_in=request.POST["clock_in"]
+        clock_out = request.POST["clock_out"]
+        attendance= AttendanceLog(employee= employee,date=date,clock_in=clock_in,clock_out=clock_out)
+        attendance.save()
+        return redirect('home')
+    return render(request, 'log_form.html',context={'employees':employees} )
+
+def show_log(request,id):
+    employee=Employee.objects.get(id=id)
+    logs=employee.attendances.all()
+    return render(request, 'logs_list.html', context={'logs':logs, 'employee':employee})
+
+
 
 
 

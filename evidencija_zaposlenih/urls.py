@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from core.views import employee_list, home, employee_detail, departments_list, departments_detail, add_employee, \
-    edit_employee_profile, delete_employee_profile,search_employee
+    edit_employee_profile, delete_employee_profile, search_employee,logs, show_log
 
 urlpatterns = [
     path('', home, name='home'),
@@ -29,5 +29,7 @@ urlpatterns = [
     path('edit_employee/<int:id>', edit_employee_profile, name='edit_emp'),
     path('delete_employee/<int:id>', delete_employee_profile, name='delete_emp'),
     path('search_employee/', search_employee, name='search_emp'),
+    path('logs/', logs, name='logs'),
+    path('show_log/<int:id>', show_log, name='show_log' ),
     path('admin/', admin.site.urls),
 ]

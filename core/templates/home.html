@@ -5,17 +5,19 @@
     <title>Evidencija zaposlenih</title>
 </head>
 <body>
+
 <div>
-<p1>ukupan broj zaposlenih</p1>
-<p1>broj aktivnih zaposlenih</p1>
-<p1>broj neaktivnih zaposlenih</p1>
-<p1>broj odeljenja</p1>
-    </div>
+<p1>Number of employees: {{ total_emp }}</p1>
+<p1>Number of active employees: {{ total_active }}</p1>
+<p1>Number of inactive employees: {{ total_inactive }}</p1>
+<p1>Number of departments: {{ total_dep }}</p1>
+</div>
 
 {#<a href="/employee_list/">Lista zaposlenih</a>#}
-<a href="{% url 'emp_list' %}">Lista zaposlenih</a>
-<a href="{% url 'dep_list' %}">Lista odeljenja</a>
-<a href="{% url 'create_emp' %}">Dodaj novog zaposlenog</a>
+<a href="{% url 'emp_list' %}">List of employees</a>
+<a href="{% url 'dep_list' %}">List of departments</a>
+<a href="{% url 'create_emp' %}">Add new employee profile</a>
+<a href="{% url 'logs' %}">Add employee attendance log</a>
 
 </body>
 </html>
