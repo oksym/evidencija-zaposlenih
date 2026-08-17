@@ -1,4 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Log form{% endblock %}
 
+{% block content %}
+    <h1>Add Attendance Log</h1>
+    <p>
 <form method="POST">
 {% csrf_token %}
  <label >Choose Employee</label>
@@ -8,10 +13,22 @@
         </option>
         {% endfor %}
     </select>
+</p>
 
-<input name="date" type="date" placeholder="Date">
-<input name="clock_in" type="time" placeholder="Clock in">
-<input name="clock_out" type="time" placeholder="Clock out">
-    <button> Save </button>
+    <p>
+        <label>Date:</label>
+        <input type="date" name="date">
+    </p>
+
+    <p>
+        <label>Clock in:</label>
+        <input type="time" name="clock_in">
+    </p>
+
+    <p>
+        <label>Clock out:</label>
+        <input type="time" name="clock_out">
+    </p>
 
     </form>
+{% endblock %}

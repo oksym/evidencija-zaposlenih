@@ -1,12 +1,24 @@
-<h1>Employee details</h1>
-{{ employee.first_name }}
-{{ employee.last_name }}
-{{ employee.email }}
-{{ employee.employee_type }}
-{{ employee.employment_date }}
-{{ employee.employment_status }}
-{{ employee.department }}
+{% extends 'base.html' %}
+{% block title %}Employee details{% endblock %}
 
-<a href="{% url 'edit_emp' employee.id %}">Edit employee profile</a>
-<a href="{% url 'delete_emp' employee.id %}">Delete employee profile</a>
-<a href="{% url 'show_log' employee.id %}">Employee attendance log</a>
+{% block content %}
+<h1>Employee details</h1>
+    <ul>
+     <li>First name: {{ employee.first_name }}</li>
+     <li>Last name :{{ employee.last_name }}</li>
+     <li>Email: {{ employee.email }}</li>
+     <li>Type: {{ employee.employee_type }}</li>
+     <li>Date of employment: {{ employee.employment_date }}</li>
+     <li>Status: {{ employee.employment_status }}</li>
+     <li>Department: {{ employee.department }}</li>
+    </ul>
+
+    <hr>
+
+    <h2>Employee Actions</h2>
+
+<p><a href="{% url 'edit_emp' employee.id %}">Edit employee profile</a></p>
+<p><a href="{% url 'delete_emp' employee.id %}">Delete employee profile</a></p>
+<p><a href="{% url 'show_log' employee.id %}">Employee attendance log</a></p>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Employee Records{% endblock %}</title>
+</head>
+<body>
+<header>
+    <h1>Employee Records </h1>
+
+    {% if user.is_authenticated %}
+        <p>Welcome, {{ user.username }}!</p>
+        <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button>Logout</button>
+        </form>
+
+        {% else %}
+
+        <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</header>
+
+<hr>
+
+<main>
+{% block content %}
+{% endblock %}
+</main>
+
+<footer>
+    <p>&copy; 2026 Employee Records</p>
+</footer>
+</body>
+</html>

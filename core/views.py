@@ -1,8 +1,9 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from core.models import Employee, Department, AttendanceLog
 from core.forms import EmployeeForm
 from django.db.models import Q
-from django.views.generic.edit import CreateView
+
 
 # =========================
 # HOME
@@ -28,6 +29,7 @@ def home(request):
 # =========================
 # EMPLOYEES
 # =========================
+@login_required
 def employee_list(request):
     employees= Employee.objects.all()
     return render(request, 'employee_list.html', context={'employees':employees})
@@ -37,7 +39,7 @@ def employee_detail(request,id):
     employee = get_object_or_404(Employee,id=id)
     return render(request, 'employee_detail.html',context={'employee':employee} )
 
-
+@login_required
 def add_employee(request):
     if request.method == "POST":
         form = EmployeeForm(request.POST)
@@ -78,6 +80,7 @@ def search_employee(request):
 # =========================
 # DEPARTMENTS
 # =========================
+@login_required
 def departments_list(request):
     departments=Department.objects.all()
     return render(request,'departments_list.html', context={'departments':departments})
@@ -102,6 +105,7 @@ def departments_detail(request,id):
 #         form= AttendanceLogForm()
 #     return render(request, 'employee_form.html',context={'form':form})
 
+@login_required()
 def logs(request):
     employees=Employee.objects.all()
     if request.method=="POST":

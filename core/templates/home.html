@@ -1,23 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Evidencija zaposlenih</title>
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h2>Employee Records Dashboard</h2>
+    <h3>Overview</h3>
+
+    {% if user.is_authenticated %}
+
+        <h3>Employee Management</h3>
+{#<a href="/employee_list/">List of employees</a>#}
+<p><a href="{% url 'emp_list' %}">List of employees</a></p>
+<p><a href="{% url 'dep_list' %}">List of departments</a></p>
+<p><a href="{% url 'create_emp' %}">Add new employee profile</a></p>
+<p><a href="{% url 'logs' %}">Add employee attendance log</a></p>
+
+        {% else %}
 
 <div>
-<p1>Number of employees: {{ total_emp }}</p1>
-<p1>Number of active employees: {{ total_active }}</p1>
-<p1>Number of inactive employees: {{ total_inactive }}</p1>
-<p1>Number of departments: {{ total_dep }}</p1>
+    <ul>
+        <li>Number of employees: <strong>{{ total_emp }}</strong></li>
+        <li>Active employees: <strong>{{ total_active }}</strong></li>
+        <li>Inactive employees: <strong>{{ total_inactive }}</strong></li>
+        <li>Number of departments: <strong>{{ total_dep }}</strong></li>
+    </ul>
 </div>
 
-{#<a href="/employee_list/">Lista zaposlenih</a>#}
-<a href="{% url 'emp_list' %}">List of employees</a>
-<a href="{% url 'dep_list' %}">List of departments</a>
-<a href="{% url 'create_emp' %}">Add new employee profile</a>
-<a href="{% url 'logs' %}">Add employee attendance log</a>
+    {% endif %}
 
-</body>
-</html>
+{% endblock %}

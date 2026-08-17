@@ -1,3 +1,23 @@
-{% for log in logs %}
-    <p>{{ log.date }} / {{ log.clock_in }} - {{ log.clock_out }}</p>
-{% endfor %}
+{% extends 'base.html' %}
+
+{% block title %}Attendance Log{% endblock %}
+
+{% block content %}
+
+<h1>Attendance Log</h1>
+
+{% if logs %}
+    {% for log in logs %}
+        <p>
+            <strong>Date:</strong> {{ log.date }} |
+            <strong>Clock in:</strong> {{ log.clock_in }} |
+            <strong>Clock out:</strong> {{ log.clock_out|default:"Still at work" }}
+        </p>
+    {% endfor %}
+
+{% else %}
+
+    <p>No attendance records found.</p>
+
+{% endif %}
+{% endblock %}

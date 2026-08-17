@@ -1,16 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}List of employees{% endblock %}
 
+{% block content %}
 <h1>List of employees</h1>
-
-{% for employee in employees %}
-    <p>
-        <a href="{% url 'emp_detail' employee.id %}">{{ employee }}</a>
-    </p>
-{% endfor %}
-
-<form method="GET" action="{% url 'search_emp' %}">
+    <form method="GET" action="{% url 'search_emp' %}">
     <input
         type="text"
         name="q"
         placeholder="Search employees..."
     >
 </form>
+    <hr>
+      <h2>All Employees</h2>
+    <ul> {% for employee in employees %}
+    <li>
+        <a href="{% url 'emp_detail' employee.id %}">{{ employee }}</a>
+    </li>
+{% endfor %}
+    </ul>
+
+
+{% endblock %}

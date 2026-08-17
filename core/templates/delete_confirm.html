@@ -1,13 +1,18 @@
+{% extends 'base.html' %}
 
-<p>Delete profile "{{ employee }}" ?</p>
+{% block title %}Delete Employee{% endblock %}
+
+{% block content %}
+<h1>Delete Employee</h1>
+<p>Are you sure you want to delete the employee <strong>{{ employee }}</strong>? </p>
+
 <form method="POST">
     {% csrf_token %}
-    <button>Confirm</button>
+    <button type="submit">Yes</button>
 </form>
 
-<form method="POST" action="{% url 'emp_detail' employee.id %}">
-    {% csrf_token %}
-    <button>Cancel</button>
-</form>
+<br>
 
+<a href="{% url 'emp_detail' employee.id %}">Cancel</a>
 
+{% endblock %}
