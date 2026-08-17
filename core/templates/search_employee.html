@@ -2,13 +2,16 @@
 {% block title %}Search results{% endblock %}
 
 {% block content %}
-<h1>Search results for {{ query }}</h1>
+<h1>Search results </h1>
 
 {% if employees %}
+    <ul>
     {% for employee in employees %}
-        {{ employee.first_name }} {{ employee.last_name }}
-        <a href="{% url 'emp_detail' employee.id %}">View employee details</a>
+        <li>{{ employee.first_name }} {{ employee.last_name }}
+        <a href="{% url 'emp_detail' employee.id %}">View employee details</a></li>
     {% endfor %}
+
+    </ul>
 {% else %}
     <p>Results not found</p>
 {% endif %}

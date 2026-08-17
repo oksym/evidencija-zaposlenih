@@ -7,7 +7,7 @@ class EmployeeForm(forms.ModelForm):
         model=Employee
         fields= "__all__"
 
-# class AttendanceLogForm(forms.ModelForm):
-#     class Meta:
-#         model=AttendanceLog
-#         fields="__all__"
+class AttendanceLogForm(forms.ModelForm):
+    class Meta:
+        model=AttendanceLog
+        fields="__all__"
